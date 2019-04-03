@@ -3,5 +3,7 @@
 
 
 <beans>
-	<bean id="triangle" class="org.kareem.test.Triangle"/>
+	<bean id="triangle" class="org.kareem.test.Triangle">
+	<property name="type" value = "Equilateral"/>
+	</bean>
 </beans>
