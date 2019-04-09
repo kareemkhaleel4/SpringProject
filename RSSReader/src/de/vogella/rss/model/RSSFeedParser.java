@@ -1,4 +1,5 @@
-package de.vogella.rss.read;
+package de.vogella.rss.model;
+
 
 import java.io.IOException;
 import java.io.InputStream;
