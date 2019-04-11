@@ -18,8 +18,8 @@ public class ReadTest {
                 "https://www.aljazeera.net/aljazeerarss/a7c186be-1baa-4bd4-9d80-a84db769f779/73d0e1b4-532f-45ef-b135-bfdff8b8cab9");
         Feed feed = parser.readFeed();
 
-        ArrayList<String> d = new ArrayList();
-        ArrayList<String> categoryArrayList = new ArrayList();
+        ArrayList<String> d = new ArrayList<>();
+        ArrayList<String> categoryArrayList = new ArrayList<>();
         Map<String, Map> dateToMap = new HashMap<String, Map>();
         // get the categories types an dates
         for (FeedMessage message : feed.getMessages()) {
