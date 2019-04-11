@@ -1,7 +1,6 @@
 package com.sprint.test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
@@ -12,7 +11,7 @@ import com.sprint.test.models.FeedMessage;
 import com.sprint.test.models.FeedParser;
 
 public class Exec{
-//	HashMap<String, ArrayList<String>> catToGuid = new HashMap<>();
+
 	HashMap<String, ArrayList<HashMap<String, ArrayList<String>>>> myMap = new HashMap<>();
 	final static String strUrl = "https://www.aljazeera.net/aljazeerarss/a7c186be-1baa-4bd4-9d80-a84db769f779/73d0e1b4-532f-45ef-b135-bfdff8b8cab9";
 	private String dirLink;
@@ -70,7 +69,6 @@ public class Exec{
 		HashMap<String, ArrayList<FeedMessage>> catToMessage = new HashMap<String, ArrayList<FeedMessage>>();
 		HashMap<String, HashMap<String, ArrayList<FeedMessage>>> dateToCat = new HashMap<String, HashMap<String,ArrayList<FeedMessage>>>();
 		for (String key: messagesByDate.keySet()) {
-			//ArrayList<HashMap<String, ArrayList<FeedMessage>>> catListToDate = new ArrayList<HashMap<String,ArrayList<FeedMessage>>>();
 			for (String cat : catagories) {
 				ArrayList<FeedMessage> catFM = new ArrayList<FeedMessage>();
 				for (FeedMessage fm : messagesByDate.get(key)) {

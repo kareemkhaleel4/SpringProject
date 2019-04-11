@@ -42,7 +42,7 @@ public class Application {
     public PollerMetadata defaultPoller() {
 
         PollerMetadata pollerMetadata = new PollerMetadata();
-        pollerMetadata.setTrigger(new PeriodicTrigger(15000));
+        pollerMetadata.setTrigger(new PeriodicTrigger(15000));//Will check for changes each 15 sec
         return pollerMetadata;
     }
 

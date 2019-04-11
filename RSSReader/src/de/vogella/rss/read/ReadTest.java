@@ -1,11 +1,9 @@
 package de.vogella.rss.read;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import de.vogella.rss.model.Feed;
 import de.vogella.rss.model.FeedMessage;
@@ -21,7 +19,6 @@ public class ReadTest {
         ArrayList<String> d = new ArrayList<>();
         ArrayList<String> categoryArrayList = new ArrayList<>();
         Map<String, Map> dateToMap = new HashMap<String, Map>();
-        // get the categories types an dates
         for (FeedMessage message : feed.getMessages()) {
         	String pubDate = message.getPubdate();
         	String category = message.getCategory();
@@ -32,7 +29,7 @@ public class ReadTest {
         		categoryArrayList.add(category);
         }
         for (String s : d) {
-        	ArrayList<FeedMessage> fm = new ArrayList();
+        	ArrayList<FeedMessage> fm = new ArrayList<FeedMessage>();
         	for (FeedMessage message : feed.getMessages()) {
         		if (chage_date_to_str(message.getPubdate()).equals(s)) {
         			fm.add(message);
@@ -43,7 +40,7 @@ public class ReadTest {
         for (String key : ma.keySet()) {
         	Map<String, ArrayList<String>> catToGuidMap = new HashMap<>();
         	for (String cat : categoryArrayList) {
-        		ArrayList<String> tempGuids = new ArrayList();
+        		ArrayList<String> tempGuids = new ArrayList<String>();
         		for (FeedMessage m : ma.get(key)) {
         			if(m.getCategory().equals(cat)) {
         				tempGuids.add(m.getGuid());
