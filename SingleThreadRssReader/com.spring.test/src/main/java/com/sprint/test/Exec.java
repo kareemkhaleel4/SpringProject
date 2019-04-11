@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import com.sprint.test.models.Feed;
 import com.sprint.test.models.FeedMessage;
 import com.sprint.test.models.FeedParser;
 
@@ -21,21 +24,23 @@ public class Exec{
 
 	public  String startRssReader() {
 		FeedParser fp = new FeedParser(strUrl);
-		HashMap<String, HashMap<String, ArrayList<FeedMessage>>> messagesByDate = changeDataFormat(fp.readFeed().getEntries());
+		Feed feed = fp.readFeed();
+		ExecutorService executor = Executors.newFixedThreadPool(5);
+		HashMap<String, HashMap<String, ArrayList<FeedMessage>>> messagesByDate = changeDataFormat(feed.getEntries());
+		
 		for (String key : messagesByDate.keySet()) {
-			new File(dirLink + "\\" + key).mkdirs();
 			for (String cat: messagesByDate.get(key).keySet()) {
-				new File(dirLink + "\\" + key + "\\" + cat).mkdirs();
 				for(FeedMessage fm : messagesByDate.get(key).get(cat)) {
-					try {
-						new File(dirLink + "\\" + key + "\\" + cat + "\\" + fm.getGuid()+ ".xml").createNewFile();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					Runnable worker = new SimpleThreadWorker(dirLink+"\\"+key, cat, fm.getGuid());
+					executor.execute(worker);
 				}
 			}
 		}
+		executor.shutdown();
+        while (!executor.isTerminated()) {
+        }
+        System.out.println("Finished all threads");
+ 
 		System.out.println("doSomthing elese");
 	return "Success";
 	}

@@ -49,7 +49,8 @@ public class Application {
 	@Bean
 	public IntegrationFlow myFlow() {
 		return IntegrationFlows.from(this.methodInvokingMessageSource())
-				.channel(this.inputChannel())
+				.channel(this.inputChannel()) // I'm using direct channel so i will not be able to do the work with the threads here
+				//instead i will do the work on the executer
 				.channel(MessageChannels.queue())
 				.get();
 	}
