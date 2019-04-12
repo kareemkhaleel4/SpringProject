@@ -26,7 +26,6 @@ public class Application {
 		
 		System.out.println("Enter the directory name: ");
 		String dir = new Scanner(System.in).nextLine();
-		
 
 		source.setObject(new Exec(dir));
 		source.setMethodName("startRssReader");
@@ -41,7 +40,8 @@ public class Application {
     public PollerMetadata defaultPoller() {
 
         PollerMetadata pollerMetadata = new PollerMetadata();
-        pollerMetadata.setTrigger(new PeriodicTrigger(15000));//Will check for changes each 15 sec
+        //Will check the file every 15 seconds.
+        pollerMetadata.setTrigger(new PeriodicTrigger(15000));
         return pollerMetadata;
     }
 
