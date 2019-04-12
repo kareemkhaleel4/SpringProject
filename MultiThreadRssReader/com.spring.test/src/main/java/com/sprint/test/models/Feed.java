@@ -69,7 +69,7 @@ public class Feed {
 	}
 	@Override
 	public String toString() {
-		return "feed [title=" + title + ", category=" + category + ", pubdate=" + pubdate + ", guid=" + guid
-				+ ", description=" + description + "]";
+		return "feed [title=" + title + ", category=" + category + ", pubdate=" + pubdate + ", guid=" + guid + "]";
+
 	}
 }

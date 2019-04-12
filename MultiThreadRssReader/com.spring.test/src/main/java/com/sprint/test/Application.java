@@ -1,6 +1,7 @@
 package com.sprint.test;
 
 import java.util.Scanner;
+import java.util.concurrent.Executors;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +10,6 @@ import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.core.MessageSource;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
-import org.springframework.integration.dsl.MessageChannels;
 import org.springframework.integration.endpoint.MethodInvokingMessageSource;
 import org.springframework.integration.scheduling.PollerMetadata;
 import org.springframework.scheduling.support.PeriodicTrigger;
@@ -24,9 +24,8 @@ public class Application {
 	public MessageSource<?> methodInvokingMessageSource() {
 		MethodInvokingMessageSource source = new MethodInvokingMessageSource();
 		
-		Scanner scan= new Scanner(System.in);
 		System.out.println("Enter the directory name: ");
-		String dir =scan.nextLine();
+		String dir = new Scanner(System.in).nextLine();
 		
 
 		source.setObject(new Exec(dir));
@@ -48,10 +47,11 @@ public class Application {
 
 	@Bean
 	public IntegrationFlow myFlow() {
-		return IntegrationFlows.from(this.methodInvokingMessageSource())
-				.channel(this.inputChannel()) // I'm using direct channel so i will not be able to do the work with the threads here
-				//instead i will do the work on the executer
-				.channel(MessageChannels.queue())
+
+		return IntegrationFlows.from(methodInvokingMessageSource())
+				.split(new MessageSplitter())
+				.channel(c -> c.executor(Executors.newFixedThreadPool(5)))
+				.handle(new RssHandler())
 				.get();
 	}
 

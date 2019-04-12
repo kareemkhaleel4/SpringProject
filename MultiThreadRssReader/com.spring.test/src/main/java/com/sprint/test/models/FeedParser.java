@@ -92,7 +92,7 @@ public class FeedParser {
 					}
 				} else if (event.isEndElement()) {
 					 if (event.asEndElement().getName().getLocalPart() == (ITEM)) {
-						 FeedMessage message = new FeedMessage(title, category, pubdate, guid, description);
+						 FeedMessage message = new FeedMessage(title.trim(), category.trim(), pubdate.trim(), guid.trim(), description.trim());
 						 tempFeed.getEntries().add(message);
 						 isStartItem = false;
 						 continue;

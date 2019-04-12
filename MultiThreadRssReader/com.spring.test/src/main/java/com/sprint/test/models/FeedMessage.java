@@ -51,8 +51,7 @@ public class FeedMessage {
 
 	@Override
 	public String toString() {
-		return "feedMessage [title=" + title + ", category=" + category + ", pubdate=" + pubdate + ", guid=" + guid
-				+ ", description=" + description + "]";
+		return "feedMessage [title=" + title + ", category=" + category + ", pubdate=" + pubdate + ", guid=" + guid + "]";
 	}
 
 	public String getDescription() {
