@@ -24,9 +24,11 @@ public class Application {
 	public MessageSource<?> methodInvokingMessageSource() {
 		MethodInvokingMessageSource source = new MethodInvokingMessageSource();
 		
-		System.out.println("Enter the directory name: ");
+		System.out.println("\nEnter the directory name, Press enter to use the default name<News>: ");
 		String dir = new Scanner(System.in).nextLine();
-
+		if (dir.equals("")) {
+			dir = "News";
+		}
 		source.setObject(new Exec(dir));
 		source.setMethodName("startRssReader");
 		return source;
