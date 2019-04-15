@@ -5,16 +5,16 @@ import java.util.HashMap;
 import org.springframework.integration.splitter.AbstractMessageSplitter;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
-import com.sprint.test.models.Feed;
 import com.sprint.test.models.FeedMessage;
 import com.sprint.test.models.FeedParser;
+import com.sprint.test.models.FeedT1;
 
 public class MessageSplitter extends AbstractMessageSplitter{
 
 	@Override
 	protected Object splitMessage(Message<?> message) {
 		FeedParser fp = (FeedParser) message.getPayload();
-		Feed feed = fp.readFeed();
+		FeedT1 feed = fp.readFeed();
 		String dirLink = (String) message.getHeaders().get("dirLink");
 		ArrayList<Message<?>> messages = new ArrayList<Message<?>>();
 		for (FeedMessage fm : feed.getEntries()) {

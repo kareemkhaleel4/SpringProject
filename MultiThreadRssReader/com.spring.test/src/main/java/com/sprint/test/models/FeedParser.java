@@ -41,8 +41,8 @@ public class FeedParser {
 	        }
 	        return result;
 	    }
-	public Feed readFeed(){
-		Feed tempFeed = null;
+	public FeedT1 readFeed(){
+		FeedT1 tempFeed = null;
 		try {
 			boolean isFeedHeader = true;
 			boolean isStartItem = false;
@@ -68,7 +68,7 @@ public class FeedParser {
 					case ITEM:
 						if (isFeedHeader) {
                             isFeedHeader = false;
-                            tempFeed = new Feed(title, category, pubdate, guid, description);
+                            tempFeed = new FeedT1(title, category, pubdate, guid, description);
                         }
                         event = eventReader.nextEvent();
 						break;

@@ -10,6 +10,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.sprint.test.models.FeedMessage;
 
 public class RssHandler implements MessageHandler {
@@ -17,6 +18,9 @@ public class RssHandler implements MessageHandler {
 	@Override
 	public void handleMessage(Message<?> message) throws MessagingException {
 		// TODO Auto-generated method stub
+		SyndEntry payload = (SyndEntry) message.getPayload();
+		//System.out.println(payload.getUri());
+/*		return null;
 		String dirLink = (String) message.getHeaders().get("dirLink");
 		FeedMessage fm = (FeedMessage) message.getPayload();
 		
@@ -38,7 +42,7 @@ public class RssHandler implements MessageHandler {
 			new File(catDirLing + "\\" +fm.getGuid() + ".xml").createNewFile();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

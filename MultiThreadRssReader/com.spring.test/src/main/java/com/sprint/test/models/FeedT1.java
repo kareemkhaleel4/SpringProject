@@ -2,7 +2,7 @@ package com.sprint.test.models;
 
 import java.util.ArrayList;
 
-public class Feed {
+public class FeedT1 {
 	public int getNumOfGuids() {
 		return numOfGuids;
 	}
@@ -13,7 +13,7 @@ public class Feed {
 	private String description;
 	private int numOfGuids = 0;
 	final ArrayList<FeedMessage> entries = new ArrayList<FeedMessage>();
-	public Feed(String title, String category, String pubdate, String guid, String description) {
+	public FeedT1(String title, String category, String pubdate, String guid, String description) {
 		super();
 		this.title = title;
 		this.category = category;
@@ -28,7 +28,7 @@ public class Feed {
 		numOfGuids = entries.size();
 		return entries;
 	}
-	public Feed() {
+	public FeedT1() {
 	}
 	public String getTitle() {
 		return title;
